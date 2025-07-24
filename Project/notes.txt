@@ -1,0 +1,21 @@
+player:
+- HP
+- GOLD
+- STR
+- WEAPONS
+
+bosses:
+- HP
+- ATTACK RANGE
+- WEAKNESS
+- GOLD
+
+weapons:
+- NAME
+- ELEMENT
+- COST
+
+dungeons:
+- NAME
+- ELEMENT
+- PRIZE
