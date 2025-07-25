@@ -4,16 +4,16 @@ fn create_default() -> String {
     S.to_string()
 }
 
-fn remove_latest_word(str: &mut String) -> String {
-    let mut parts: Vec<&str> = str.split_whitespace().collect();
+fn remove_latest_word(s1: &mut String) {
+    let mut parts: Vec<&str> = s1.split_whitespace().collect();
     parts.pop();
-
-    let mut result = String::new();
+    
+    let mut s2: String = "".to_string();
     for part in parts {
-        result.push_str(part);
-        result.push_str(" ");
+        s2.push_str(part);
+        s2.push_str(" ");
     }
-    result.trim().to_string() // delete the last whitespace
+    *s1 = s2.trim_end().to_string();
 }
 
 fn main() {
@@ -37,7 +37,7 @@ fn main() {
             user_string = create_default(); 
       
         } else if i == 2 {
-            user_string = remove_latest_word(&mut user_string);
+            remove_latest_word(&mut user_string);
             
         } else if i == 3 {
             println!("The new word: ");

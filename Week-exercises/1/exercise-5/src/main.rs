@@ -2,7 +2,7 @@ fn receive_player_attack_dmg() -> f32 {
     rand::random_range(12.5..20.0)
 }
 
-fn receive_defence_multiplier() -> f32 {
+fn receive_defense_multiplier() -> f32 {
     let num: f32 = rand::random_range(2.0..4.0);
     1 as f32 / num
 }
@@ -42,7 +42,7 @@ fn main() {
             println!("Your attack deals {} amount of damage.", dmg);
 
         } else if input == "2" {
-            multiplier = receive_defence_multiplier();
+            multiplier = receive_defense_multiplier();
             println!("Defence activated!");
 
         } else if input == "3" {

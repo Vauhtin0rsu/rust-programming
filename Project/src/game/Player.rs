@@ -17,7 +17,7 @@ impl Player {
             curnt_hp: 200,
             str: 1.0,
             gold: 0,
-            potions: 3,
+            potions: 5,
             weapons: vec![],
             bosses_won: 0,
         }
