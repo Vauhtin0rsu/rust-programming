@@ -8,7 +8,7 @@ use game::WeaponMap::WeaponMap;
 use rand::Rng;
 use std::io;
 
-fn menu(name: &str, function: &str) -> i8 {
+fn menu(function: &str) -> i8 {
     // Different menus are printed depending on what "function" is called (could have a better name)
     // if function == "main" {
     //     println!("\nMitä tehdään, {}?", name);
@@ -89,7 +89,7 @@ fn battle_normal(player: &mut Player, monsters: &mut Vec<Monster>) {
         }
 
         loop {         
-            let j = menu("", "battle_normal");
+            let j = menu("battle_normal");
             let mut player_defence_multiplier: f32 = 1.0;
             match j {
                 1 => { // normal attack, players and weapons strength affect
@@ -196,12 +196,12 @@ fn battle_boss(monster: &Monster, player: &mut Player, wm: &WeaponMap) {
     let mut curnt_weapon: Weapon = player.weapons[i - 1].clone();
     println!("{}! Hyvä valinta!", curnt_weapon.name);
     if curnt_weapon.element == boss.weakness {
-        println!("Aseesi tekee ekstravahinkoa tähän hirviöön!");
+        println!("Aseesi tekee ekstravahinkoa lohikäärmeeseen!");
     }
 
     let mut round_counter: i32 = 0; // Counter because the boss attacks only on every third round
     loop {
-        let j: i8 = menu("", "battle_boss");
+        let j: i8 = menu("battle_boss");
         round_counter += 1;
         match j {
             1 => {
@@ -261,7 +261,7 @@ fn battle_boss(monster: &Monster, player: &mut Player, wm: &WeaponMap) {
             }
         }
         if boss.hp <= 0 {
-            println!("Olet voittanut lohikäärme! Hurraa!!!");
+            println!("Olet voittanut lohikäärmeen! Hurraa!!!");
             // append_monsterfile
             player.max_hp += 50;
             player.str += 0.33;
@@ -291,7 +291,7 @@ fn battle_boss(monster: &Monster, player: &mut Player, wm: &WeaponMap) {
 }
 
 fn weapon_market(player: &mut Player, wm: &WeaponMap) {
-    println!("Myynnissä olevat aseet:");
+    println!("\nMyynnissä olevat aseet:");
 
     let mut i: i32 = 1;
     for weapon in &wm.for_the_shop {
@@ -395,7 +395,7 @@ fn main() {
             break;
         }
 
-        println!("Pelaajan {} tämänhetkiset attribuutit:", name);
+        println!("\nPelaajan {} tämänhetkiset attribuutit:", name);
         println!("Elämäpisteet: {}", player.max_hp);
         println!("Rahat: {} kultaa", player.gold);
         println!("Voimakerroin: {}", player.str);
@@ -410,6 +410,11 @@ fn main() {
             weapon_market(&mut player, &wm);
             potion_market(&mut player);          
         } else {
+            println!("\nLöydät tiesi ostoksille");
+            println!("Sinulla on {} kultaa.", player.gold);
+            weapon_market(&mut player, &wm);
+            potion_market(&mut player);
+            
             let mut dungeon_monsters: Vec<Monster> = vec![];
             rng_max = mm.normals.len();
             for mut _j in 0..3 {
